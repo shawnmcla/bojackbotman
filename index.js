@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Discord = require('discord.js')
 const db = require('./db')
-const { prefix, token } = require('./config.json')
+const { prefix, token, botmodCooldownImmune } = require('./config.json')
 
 const client = new Discord.Client()
 
@@ -66,27 +66,30 @@ client.on('message', message => {
         return message.channel.send(`You didn't provide any arguments, ${message.author}!` +
             (command.usage ? `\nProper usage: \`${prefix}${command.name} ${command.usage}\`` : ""))
     }
-    
-    // Verify cooldowns
-    if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection())
-    const now = Date.now()
-    const timestamps = cooldowns.get(command.name)
-    const cooldownAmount = (command.cooldown || 3) * 1000
-    if (!timestamps.has(message.author.id)) {
-        timestamps.set(message.author.id, now)
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
-    }
-    else {
-        const expirationTime = timestamps.get(message.author.id) + cooldownAmount
 
-        if (now < expirationTime) {
-            const timeLeft = (expirationTime - now) / 1000
-            return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${commandName}\` command.`)
+    // Verify cooldowns and immunity
+    if (!botmodCooldownImmune || !message.member || !message.member.roles.exists('name', 'botmod')) {
+        if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection())
+        const now = Date.now()
+        const timestamps = cooldowns.get(command.name)
+        const cooldownAmount = (command.cooldown || 3) * 1000
+        if (!timestamps.has(message.author.id)) {
+            timestamps.set(message.author.id, now)
+            setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
         }
+        else {
+            const expirationTime = timestamps.get(message.author.id) + cooldownAmount
 
-        timestamps.set(message.author.id, now)
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
+            if (now < expirationTime) {
+                const timeLeft = (expirationTime - now) / 1000
+                return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${commandName}\` command.`)
+            }
+
+            timestamps.set(message.author.id, now)
+            setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
+        }
     }
+
     // Execute the command
     try {
         command.execute(message, args)

@@ -6,6 +6,13 @@ const SUGG_TYPES = [
     "misc"
 ]
 
+const SUGG_STATUS = [
+    "pending",
+    "considering",
+    "implemented",
+    "declined"
+]
+
 const Suggestion = db.define('suggestion', {
     type: {
         type: Sequelize.STRING,
@@ -16,6 +23,11 @@ const Suggestion = db.define('suggestion', {
     },
     value: {
         type: Sequelize.STRING
+    },
+    status: {
+        type:Sequelize.STRING,
+        defaultValue: "pending",
+        isIn: [SUGG_STATUS]
     }
 })
 
@@ -33,10 +45,11 @@ function recordSuggestion(author, type, text) {
     })
 }
 
-function getSuggestions(type, max = 5) {
+function getSuggestions(type, status, max = 5) {
     return new Promise(function (resolve, reject) {
         let whereOptions = {}
-        if (type) whereOptions = { type: type }
+        if (type) whereOptions.type = type
+        if (status) whereOptions.status = status
         Suggestion.findAll({
             where: whereOptions,
             'order': [['createdAt', 'DESC']],
@@ -55,7 +68,21 @@ function removeSuggestion(id) {
             .then((sug => {
                 sug.destroy()
             }))
-            .then(() =>{
+            .then(() => {
+                resolve()
+            })
+            .catch((error) => reject(error))
+    })
+}
+
+function setSuggestionStatus(id, status) {
+    return new Promise(function (resolve, reject) {
+        Suggestion.findById(id)
+            .then((sug => {
+                sug.status = status
+                sug.save()
+            }))
+            .then(() => {
                 resolve()
             })
             .catch((error) => reject(error))

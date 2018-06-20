@@ -6,7 +6,6 @@ const { prefix, token, botmodCooldownImmune } = require('./config.json')
 const client = new Discord.Client()
 
 // Dynamically load commands
-
 client.commands = new Discord.Collection()
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
 

@@ -9,6 +9,9 @@
   "author": "Shawn McLaughlin <shawnmcdev@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "localeval": "^15.2.3",
+    "sequelize": "^4.37.10",
+    "sqlite3": "^4.0.0"
   }
 }

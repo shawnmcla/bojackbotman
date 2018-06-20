@@ -15,7 +15,7 @@ module.exports = {
             return message.reply("Invalid status. See help command for more information.")
         Suggestion.setSuggestionStatus(id, status)
         .then(()=>{
-            message.reply(`Successfully changed #${id}'s status to ${status}`)
+            message.reply(`Successfully changed suggestion #${id}'s status to ${status}`)
         })
         .catch((error) =>{
             message.reply(`Could not set status for suggestion with ID ${id}`)

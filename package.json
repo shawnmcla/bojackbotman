@@ -9,8 +9,10 @@
   "author": "Shawn McLaughlin <shawnmcdev@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "discord.js": "^11.3.2",
     "localeval": "^15.2.3",
+    "node-fetch": "^2.1.2",
     "sequelize": "^4.37.10",
     "sqlite3": "^4.0.0"
   }

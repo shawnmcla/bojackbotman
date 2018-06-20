@@ -4,7 +4,7 @@ module.exports = {
     name: 'suggestions',
     description: 'View latest suggestions for the bot, discord server or other.',
     aliases: ['suggestion'],
-    usage: `< type (${Suggestion.types.join(" | ")}) ?>`,
+    usage: `<type (${Suggestion.types.join(" | ")})?>`,
     cooldown: 30,
     execute(message, args) {
         const type = args[0]

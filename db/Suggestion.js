@@ -1,4 +1,4 @@
-const { Sequelize, db } = require('./index')
+const { Sequelize, db } = require('.')
 
 const SUGG_TYPES = [
     "bot",
@@ -91,8 +91,10 @@ function setSuggestionStatus(id, status) {
 
 module.exports = {
     types: SUGG_TYPES,
+    status: SUGG_STATUS,
     model: Suggestion,
     recordSuggestion,
     getSuggestions,
-    removeSuggestion
+    removeSuggestion,
+    setSuggestionStatus
 }

@@ -4,7 +4,7 @@ module.exports = {
     name: 'suggest',
     description: 'Submit a suggestion for the bot, discord server or other.',
     aliases: ['suggestion'],
-    usage: `< type (${Suggestion.types.join(" | ")}) > < suggestion message >`,
+    usage: `<type (${Suggestion.types.join(" | ")})> <suggestion message>`,
     cooldown: 30,
     args: true,
     execute(message, args){

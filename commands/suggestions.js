@@ -11,13 +11,12 @@ module.exports = {
         if (type && !Suggestion.types.includes(type))
             return message.reply('Invalid syntax: The first argument must be the type of suggestion, see the help command for more information.')
         else {
-            //return message.reply(`Thank you! Your suggestion \`${text}\` has been recorded. (Not really, DB implementation is not yet done)`)
             Suggestion.getSuggestions(type)
                 .then((result) => {
                     const data = []
                     data.push(`Latest suggestions for ${type ? type : "all categories"}\n`)
                     data.push(...result.map(s =>
-                        `\`#${s.id} by ${s.author}: ${s.value} ${type ? '' : `(${s.type})`}\``
+                        `\`#${s.id} by ${s.author}: ${s.value} ${type ? '' : `(${s.type})`} [${s.status? s.status.toUpperCase() : ''}]\``
                     ))
                     return message.channel.send(data, { split: true })
                 })
@@ -27,5 +26,4 @@ module.exports = {
                 })
         }
     }
-    //TODO: Add optional limit arg
 }

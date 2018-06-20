@@ -33,14 +33,25 @@ function recordSuggestion(author, type, text) {
     })
 }
 
-function getSuggestions(max){
-    return new Promise(function(resolve, reject){
-        resolve([])
+function getSuggestions(type, max=5) {
+    return new Promise(function (resolve, reject) {
+        let whereOptions = {}
+        if(type) whereOptions = {type: type}
+        Suggestion.findAll({
+            where: whereOptions,
+            'order': [['createdAt', 'DESC']],
+            limit: max
+        })
+            .then((results) => {
+                resolve(results)
+            })
+            .catch((error) => reject(error))
     })
 }
 
 module.exports = {
     types: SUGG_TYPES,
     model: Suggestion,
-    recordSuggestion
+    recordSuggestion,
+    getSuggestions
 }

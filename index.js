@@ -37,9 +37,11 @@ client.on('message', message => {
     //$devonly
     console.log("Received command: ", commandName, args)
 
-    if (!client.commands.has(commandName)) return
+    // Fetch the command object, if it exists
+    const command = client.commands.get(commandName) ||
+        client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
 
-    const command = client.commands.get(commandName)
+    if (!command) return
 
     // Check that context is correct (guild channel vs DM)
     if (command.guildOnly && message.channel.type !== 'text') {

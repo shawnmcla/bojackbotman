@@ -19,6 +19,7 @@ const cooldowns = new Discord.Collection()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}..`)
+    client.user.setActivity('ALL OF YOU', { type: 'WATCHING' })
 })
 
 
@@ -47,11 +48,25 @@ client.on('message', message => {
     if (command.guildOnly && message.channel.type !== 'text') {
         return message.reply('This command cannot be used in DMs.')
     }
+
+    // Check that user has appropriate role
+    if (command.roles) {
+        if (!message.member) return message.reply('Insufficient permissions.')
+        let isPermitted = false;
+        command.roles.forEach(role => {
+            if (message.member.roles.exists('name', role)) {
+                isPermitted = true
+            }
+        })
+        if (!isPermitted) return message.reply('Insufficient permissions.')
+    }
+
     // Check that if the command requires arguments that arguments are present
     if (command.args && !args.length) {
         return message.channel.send(`You didn't provide any arguments, ${message.author}!` +
             (command.usage ? `\nProper usage: \`${prefix}${command.name} ${command.usage}\`` : ""))
     }
+    
     // Verify cooldowns
     if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection())
     const now = Date.now()

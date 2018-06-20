@@ -16,8 +16,8 @@ module.exports = {
                 .then((result) => {
                     const data = []
                     data.push(`Latest suggestions for ${type ? type : "all categories"}\n`)
-                    data.push(...result.map(s=>
-                        `\`#${s.id} by ${s.author}: ${s.value} ${type ? '': `(${s.type})`}\``
+                    data.push(...result.map(s =>
+                        `\`#${s.id} by ${s.author}: ${s.value} ${type ? '' : `(${s.type})`}\``
                     ))
                     return message.channel.send(data, { split: true })
                 })

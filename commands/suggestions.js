@@ -3,7 +3,6 @@ const Suggestion = require('../db/Suggestion')
 module.exports = {
     name: 'suggestions',
     description: 'View latest suggestions for the bot, discord server or other.',
-    aliases: ['suggestion'],
     usage: `<type (${Suggestion.types.join(" | ")})?>`,
     cooldown: 30,
     execute(message, args) {

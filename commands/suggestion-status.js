@@ -1,4 +1,4 @@
-const Suggestion  = require('../db/Suggestion')
+const Suggestion = require('../db/Suggestion')
 
 module.exports = {
     name: 'setsuggestionstatus',
@@ -8,17 +8,17 @@ module.exports = {
     cooldown: 5,
     args: true,
     roles: ['botmod'],
-    execute(message, args){
+    execute(message, args) {
         const id = args[0]
         const status = args[1]
-        if(!status || !Suggestion.status.includes(status))
+        if (!status || !Suggestion.status.includes(status))
             return message.reply("Invalid status. See help command for more information.")
         Suggestion.setSuggestionStatus(id, status)
-        .then(()=>{
-            message.reply(`Successfully changed suggestion #${id}'s status to ${status}`)
-        })
-        .catch((error) =>{
-            message.reply(`Could not set status for suggestion with ID ${id}`)
-        })
+            .then(() => {
+                message.reply(`Successfully changed suggestion #${id}'s status to ${status}`)
+            })
+            .catch((error) => {
+                message.reply(`Could not set status for suggestion with ID ${id}`)
+            })
     }
 }

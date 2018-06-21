@@ -20,7 +20,7 @@ function computeFontSize(canvas, name) {
     const ctx = canvas.getContext('2d')
     let fontSize = 70;
     do {
-        ctx.font = `${fontSize -= 5}px Arial`
+        ctx.font = `${fontSize -= 5}px sans-serif"`
     } while (ctx.measureText(name).width > 240)
     return fontSize
 }
@@ -31,10 +31,10 @@ async function generateWelcomeBanner(name) {
     const bgImage = await Canvas.loadImage(`${BG_DIR}/${getRandomImage()}`)
     ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height)
     
-    ctx.font = '38px Arial'
+    ctx.font = '38px sans-serif"'
 
     ctx.fillStyle = "#000000"
-    
+
     ctx.shadowColor="#fff"
     ctx.shadowOffsetX = 2
     ctx.shadowOffsetY = 1

@@ -1,4 +1,4 @@
-const { generateWelcomeBanner } = require('../util/images')
+const { generateWelcomeBanner } = require('../../util/images')
 
 module.exports = {
     name: 'welcome-test',

@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Canvas = require('canvas')
 const { Attachment } = require('discord.js')
+const { randInt } = require('./randint.js')
 
 const BG_DIR = "resources/img/welcome-bg"
 const bgfiles = fs.readdirSync(BG_DIR)
@@ -12,7 +13,7 @@ const welcomeConfig = {
 
 function getRandomImage() {
     const min = 0, max = bgfiles.length - 1
-    const index = Math.floor(Math.random() * (max - min + 1)) + min
+    const index = randInt(min, max)
     return bgfiles[index]
 }
 

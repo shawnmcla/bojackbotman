@@ -1,0 +1,65 @@
+{
+    "name": "General Trivia",
+    "questions": [
+        {
+            "question": "What is 5 + 6?",
+            "answers": [
+                "11",
+                "eleven"
+            ]
+        },
+        {
+            "question": "What color is the sky?",
+            "answers": [
+                "blue"
+            ]
+        },
+        {
+            "question": "What is the capital of Canada?",
+            "answers": [
+                "ottawa"
+            ]
+        },
+        {
+            "question": "Who is the inventor of the Linux Kernel?",
+            "answers": [
+                "linus torvalds",
+                "linus",
+                "torvalds"
+            ]
+        },
+        {
+            "question": "What is the capital of The United States?",
+            "answers": [
+                "Washington DC",
+                "Washington, D.C.",
+                "Washington, DC",
+                "DC",
+                "D.C.",
+                "District of Columbia"
+            ]
+        },
+        {
+            "question": "What Ocean lies between North America and Europe?",
+            "answers": [
+                "Atlantic",
+                "Atlantic Ocean",
+                "The Atlantic"
+            ]
+        },
+        {
+            "question": "What is the Earth's sole natural satelite?",
+            "answers": [
+                "Moon",
+                "The Moon"
+            ]
+        },
+        {
+            "question": "Which star is the closest to us?",
+            "answers": [
+                "Sun",
+                "The Sun"
+            ]
+        },
+    ]
+}

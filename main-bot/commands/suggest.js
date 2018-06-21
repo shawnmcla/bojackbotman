@@ -1,4 +1,4 @@
-const Suggestion = require('../db/Suggestion')
+const Suggestion = require('../../db/Suggestion')
 
 module.exports = {
     name: 'suggest',

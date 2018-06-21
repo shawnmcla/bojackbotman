@@ -7,6 +7,7 @@ let connected = false;
 const sequelize = new Sequelize('botjack', 'user', 'pass', {
     dialect: 'sqlite',
     storage: './db.sqlite',
+    logging: false
 })
 
 sequelize

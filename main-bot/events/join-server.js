@@ -1,4 +1,4 @@
-const { generateWelcomeBanner } = require('../util/images.js')
+const { generateWelcomeBanner } = require('../../util/images.js')
 module.exports =
     async function (member) {
         const channel = member.guild.channels.find(ch => ch.name === 'general-chat')

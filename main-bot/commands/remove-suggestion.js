@@ -1,4 +1,4 @@
-const {removeSuggestion} = require('../db/Suggestion')
+const {removeSuggestion} = require('../../db/Suggestion')
 
 module.exports = {
     name: 'removesuggestion',

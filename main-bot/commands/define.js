@@ -1,4 +1,4 @@
-const { getEntries } = require('../apis/dictionary')
+const { getEntries } = require('../../apis/dictionary')
 
 module.exports = {
     name: 'define',

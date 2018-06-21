@@ -45,7 +45,7 @@ async function generateWelcomeBanner(name) {
     ctx.font = computeFontSize(canvas, name)
     ctx.fillStyle = "#000000"
 
-    ctx.fillText(`${name}`, 251, 125)
+    ctx.fillText(`${name}`, 251, 135)
     
     return new Attachment(canvas.toBuffer(), 'welcome-banner.png')
 }

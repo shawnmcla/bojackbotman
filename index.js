@@ -1,5 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
+const eventJoinServer = require('./events/join-server.js')
 const db = require('./db')
 const { prefix, token, botmodCooldownImmune } = require('./config.json')
 
@@ -21,6 +22,8 @@ client.on('ready', () => {
     client.user.setActivity('ALL OF YOU', { type: 'WATCHING' })
 })
 
+//Events
+client.on('guildMemberAdd', eventJoinServer)
 
 client.on('message', message => {
     //$devonly
